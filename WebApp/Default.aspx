@@ -26,7 +26,7 @@
             </div>
             <div class="input-group mb-3">
                 <asp:TextBox runat="server" ID="txtFiltro" CssClass="form-control" />
-                <asp:Button ID="btnFiltrar" runat="server" Text="Buscar" OnClick="btnFiltrar_Click" CssClass="btn btn-primary" />
+                <asp:Button ID="btnFiltrarEnDefault" runat="server" Text="Buscar" OnClick="btnFiltrarEnDefault_Click" CssClass="btn btn-primary" />
             </div>
         </div>
     </div>
@@ -42,7 +42,6 @@
                         <img src="<%#Eval("ImagenUrl")%>" class="card-img-top" alt="El dispositivo no posee imagen">
                         <div class="card-body">
                             <h5 class="card-title"><%#Eval("Nombre")%></h5>
-                            <p class="card-text"><%#Eval("Descripcion")%></p>
                             <a href="Detalle.aspx?id=<%#Eval("Id")%>" class="btn btn-primary">Detalle</a>
                         </div>
                     </div>

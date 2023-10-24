@@ -19,7 +19,13 @@ namespace negocio
 
             try
             {
-                datos.setearConsulta("SELECT a.Id, a.Codigo, a.Nombre, a.Descripcion, a.IdMarca, a.IdCategoria, m.Descripcion Marca, c.Descripcion Dispositivo, a.ImagenUrl, CAST(a.precio as float (1)) Precio FROM ARTICULOS A, MARCAS M, CATEGORIAS C WHERE m.Id = a.IdMarca and c.Id = a.IdCategoria");
+                //pregunto si recibo un id. Si recibo un id, a la consulta le agrego que me traiga también el artículo que tenga el 
+                //mismo id que el id recibido. Sino tengo id, que haga la consulta sin esa condición
+                if (id != "")
+                    datos.setearConsulta("select a.Id, a.Codigo, a.Nombre, a.Descripcion, a.IdMarca, a.IdCategoria, m.Descripcion Marca, c.Descripcion Dispositivo, a.ImagenUrl, CAST(a.precio as float (1)) Precio from ARTICULOS A, MARCAS M, CATEGORIAS C where m.Id = a.IdMarca and c.Id = a.IdCategoria and a.Id = " + id);
+                else
+                    datos.setearConsulta("select a.Id, a.Codigo, a.Nombre, a.Descripcion, a.IdMarca, a.IdCategoria, m.Descripcion Marca, c.Descripcion Dispositivo, a.ImagenUrl, CAST(a.precio as float (1)) Precio from ARTICULOS A, MARCAS M, CATEGORIAS C where m.Id = a.IdMarca and c.Id = a.IdCategoria");
+
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())

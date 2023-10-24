@@ -42,6 +42,13 @@ namespace WebApp
             Response.Redirect("Formulario.aspx", false);
         }
 
+        protected void btnFiltrarenGrilla_Click(object sender, EventArgs e)
+        {
+            List<Articulo> lista = (List<Articulo>)Session["listArticulo"];
+            List<Articulo> listaFiltrada = lista.FindAll(x => x.Nombre.ToUpper().Contains(txtFiltro.Text.ToUpper()));
 
+            dgvArticulos.DataSource = listaFiltrada;
+            dgvArticulos.DataBind();
+        }
     }
 }
