@@ -20,7 +20,7 @@ namespace negocio
         }
         public AccesoDatos()
         {
-            conexion = new SqlConnection("server=.\\SQLEXPRESS; database=CATALOGO_DB; integrated security=true");
+            conexion = new SqlConnection("server=.\\SQLEXPRESS; database=CATALOGO_WEB_DB; integrated security=true");
             comando = new SqlCommand();
         }
 
@@ -39,7 +39,7 @@ namespace negocio
 
         public void cerrarConexion()
         {
-            if(lector != null)
+            if (lector != null)
                 lector.Close();
             conexion.Close();
         }
@@ -61,6 +61,11 @@ namespace negocio
         {
             comando.Parameters.AddWithValue(nombre, valor);
         }
-        
+
+        public void setearSP(string sp)
+        {
+            comando.CommandType = System.Data.CommandType.StoredProcedure;
+            comando.CommandText = sp;
+        }
     }
 }

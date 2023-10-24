@@ -72,7 +72,12 @@
     <Content Include="Formulario.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Grilla.aspx" />
+    <Content Include="Images\Angular_full_color_logo.svg.png" />
+    <Content Include="Images\imagenPerfil.png" />
+    <Content Include="Images\imagenVacia.png" />
     <Content Include="Login.aspx" />
+    <Content Include="Scripts\Script.js" />
+    <Content Include="Styles\styles.css" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
