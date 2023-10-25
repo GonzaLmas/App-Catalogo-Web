@@ -20,14 +20,8 @@ namespace WebApp
             dgvArticulos.DataSource = Session["listArticulo"];
             dgvArticulos.DataBind();
 
-        }
-
-        protected void dgvArticulos_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //en este evento capturo el id del registro seleccinado y redirijo a la pantalla del
-            //formulario envíando por URL el id del registro seleccionado
-            string id = dgvArticulos.SelectedDataKey.Value.ToString();
-            Response.Redirect("Formulario.aspx?id=" + id, false);
+            dgvAdmin.DataSource = Session["listArticulo"];
+            dgvAdmin.DataBind();
         }
 
         protected void dgvArticulos_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -49,6 +43,21 @@ namespace WebApp
 
             dgvArticulos.DataSource = listaFiltrada;
             dgvArticulos.DataBind();
+        }
+
+        protected void dgvAdmin_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //en este evento capturo el id del registro seleccinado y redirijo a la pantalla del
+            //formulario envíando por URL el id del registro seleccionado
+            string id = dgvAdmin.SelectedDataKey.Value.ToString();
+            Response.Redirect("Formulario.aspx?id=" + id, false);
+        }
+
+        protected void dgvAdmin_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            //captura lo que recibe del evento de la grilla la nueva página y la asigna a la página actual
+            dgvAdmin.PageIndex = e.NewPageIndex;
+            dgvAdmin.DataBind();
         }
     }
 }

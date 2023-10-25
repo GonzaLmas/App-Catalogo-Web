@@ -34,10 +34,24 @@
 
     <%--        </ContentTemplate>
     </asp:UpdatePanel>--%>
-
+    <%if (!(negocio.Validaciones.EsAdmin(Session["user"])))
+        { %>
     <asp:GridView ID="dgvArticulos" runat="server" AutoGenerateColumns="false" DataKeyNames="Id" CssClass="table table-striped"
-        AllowPaging="true" PageSize="7" OnSelectedIndexChanged="dgvArticulos_SelectedIndexChanged"
-        OnPageIndexChanging="dgvArticulos_PageIndexChanging">
+        AllowPaging="true" PageSize="7" OnPageIndexChanging="dgvArticulos_PageIndexChanging">
+        <Columns>
+            <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
+            <asp:BoundField HeaderText="Descripción" DataField="Descripcion" />
+            <asp:BoundField HeaderText="Marca" DataField="Marca.Descripcion" />
+            <asp:BoundField HeaderText="Categoria" DataField="Dispositivo.Descripcion" />
+            <asp:BoundField HeaderText="Precio" DataField="Precio" />
+        </Columns>
+    </asp:GridView>
+
+    <% }
+        else
+        { %>
+    <asp:GridView ID="dgvAdmin" runat="server" AutoGenerateColumns="false" DataKeyNames="Id" CssClass="table table-striped"
+        AllowPaging="true" PageSize="7" OnSelectedIndexChanged="dgvAdmin_SelectedIndexChanged" OnPageIndexChanging="dgvAdmin_PageIndexChanging">
         <Columns>
             <asp:BoundField HeaderText="Nombre" DataField="Nombre" />
             <asp:BoundField HeaderText="Descripción" DataField="Descripcion" />
@@ -48,4 +62,5 @@
         </Columns>
     </asp:GridView>
     <asp:Button ID="btnAgregar" runat="server" Text="Agregar" OnClick="btnAgregar_Click" CssClass="btn btn-primary" />
+    <%} %>
 </asp:Content>

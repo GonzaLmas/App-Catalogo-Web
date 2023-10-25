@@ -22,13 +22,10 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="Formulario.aspx">Formulario</a>
-                            </li>
-                            <li class="nav-item">
                                 <a class="nav-link" href="Grilla.aspx">Lista Artículos</a>
                             </li>
                         </ul>
-                        <%if (Session["user"] == null)
+                        <%if (!(negocio.Validaciones.UsuarioActivo(Session["user"])))
                             { %>
                         <form class="d-flex" role="search">
                             <a class="btn btn-outline-primary buttons" href="Login.aspx">Login</a>

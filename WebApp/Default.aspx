@@ -42,6 +42,7 @@
                         <img src="<%#Eval("ImagenUrl")%>" class="card-img-top" alt="El dispositivo no posee imagen">
                         <div class="card-body">
                             <h5 class="card-title"><%#Eval("Nombre")%></h5>
+                            <h5 class="card-title"> Precio: $<%#Eval("Precio")%></h5>
                             <a href="Detalle.aspx?id=<%#Eval("Id")%>" class="btn btn-primary">Detalle</a>
                         </div>
                     </div>

@@ -16,55 +16,59 @@ namespace WebApp
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            txtId.Enabled = false;
-
-            ArticuloNegocio negocio = new ArticuloNegocio();
-            CategoriaNegocio catNego = new CategoriaNegocio();
-            MarcaNegocio marNego = new MarcaNegocio();
-
-            try
+            if (Validaciones.EsAdmin(Session["user"]))
             {
-                if (!IsPostBack)
+                txtId.Enabled = false;
+
+                ArticuloNegocio negocio = new ArticuloNegocio();
+                CategoriaNegocio catNego = new CategoriaNegocio();
+                MarcaNegocio marNego = new MarcaNegocio();
+
+                try
                 {
-                    List<Articulo> listArticulo = negocio.listarConSP();
-                    Session["listArticulo"] = listArticulo;
+                    if (!IsPostBack)
+                    {
+                        List<Articulo> listArticulo = negocio.listarConSP();
+                        Session["listArticulo"] = listArticulo;
 
-                    List<Marca> listMarca = marNego.listar();
-                    ddlMarca.DataSource = listMarca;
-                    ddlMarca.DataTextField = "Descripcion";
-                    ddlMarca.DataValueField = "Id";
-                    ddlMarca.DataBind();
+                        List<Marca> listMarca = marNego.listar();
+                        ddlMarca.DataSource = listMarca;
+                        ddlMarca.DataTextField = "Descripcion";
+                        ddlMarca.DataValueField = "Id";
+                        ddlMarca.DataBind();
 
-                    List<Categoria> listCategoria = catNego.listar();
-                    ddlCategoria.DataSource = listCategoria;
-                    ddlCategoria.DataTextField = "Descripcion";
-                    ddlCategoria.DataValueField = "Id";
-                    ddlCategoria.DataBind();
+                        List<Categoria> listCategoria = catNego.listar();
+                        ddlCategoria.DataSource = listCategoria;
+                        ddlCategoria.DataTextField = "Descripcion";
+                        ddlCategoria.DataValueField = "Id";
+                        ddlCategoria.DataBind();
+                    }
+
+                    string id = Request.QueryString["id"] != null ? Request.QueryString["id"] : string.Empty;
+
+                    if (id != string.Empty && !IsPostBack)
+                    {
+                        ArticuloNegocio articuloNegocio = new ArticuloNegocio();
+                        Articulo artSeleccionado = (articuloNegocio.listar(id))[0];
+
+                        txtId.Text = artSeleccionado.Id.ToString();
+                        txtCodigo.Text = artSeleccionado.Codigo;
+                        txtNombre.Text = artSeleccionado.Nombre;
+                        txtDescripcion.Text = artSeleccionado.Descripcion;
+                        txtPrecio.Text = artSeleccionado.Precio.ToString();
+                        txtImagen.Text = artSeleccionado.ImagenUrl;
+                        ddlMarca.SelectedValue = artSeleccionado.Marca.Id.ToString();
+                        ddlCategoria.SelectedValue = artSeleccionado.Dispositivo.Id.ToString();
+                        txtImagen_TextChanged(sender, e);
+
+                        btnAgregar.Text = "Modificar";
+                    }
+
                 }
-
-                string id = Request.QueryString["id"] != null ? Request.QueryString["id"] : string.Empty;
-
-                if (id != string.Empty && !IsPostBack)
+                catch (Exception ex)
                 {
-                    ArticuloNegocio articuloNegocio = new ArticuloNegocio();
-                    Articulo artSeleccionado = (articuloNegocio.listar(id))[0];
-
-                    txtId.Text = artSeleccionado.Id.ToString();
-                    txtCodigo.Text = artSeleccionado.Codigo;
-                    txtNombre.Text = artSeleccionado.Nombre;
-                    txtDescripcion.Text = artSeleccionado.Descripcion;
-                    txtPrecio.Text = artSeleccionado.Precio.ToString();
-                    txtImagen.Text = artSeleccionado.ImagenUrl;
-                    ddlMarca.SelectedValue = artSeleccionado.Marca.Id.ToString();
-                    ddlCategoria.SelectedValue = artSeleccionado.Dispositivo.Id.ToString();
-                    txtImagen_TextChanged(sender, e);
-
-                    btnAgregar.Text = "Modificar";
+                    throw ex;
                 }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
             }
         }
 

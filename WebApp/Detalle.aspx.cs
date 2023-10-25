@@ -30,6 +30,12 @@ namespace WebApp
                     txtPrecioDetll.Text = artSeleccionado.Precio.ToString();
                     txtImagenDetll.Text = artSeleccionado.ImagenUrl;
                     txtImagenDetll_TextChanged(sender, e);
+
+                    txtCodigoDetll.Enabled = false;
+                    txtNombreDetll.Enabled = false;
+                    txtDescripcionDetll.Enabled = false;
+                    txtPrecioDetll.Enabled = false;
+                    txtImagenDetll.Enabled = false;
                 }
             }
             catch (Exception ex)
