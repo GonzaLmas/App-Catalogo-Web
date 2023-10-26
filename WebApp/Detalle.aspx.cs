@@ -28,14 +28,23 @@ namespace WebApp
                     txtNombreDetll.Text = artSeleccionado.Nombre;
                     txtDescripcionDetll.Text = artSeleccionado.Descripcion;
                     txtPrecioDetll.Text = artSeleccionado.Precio.ToString();
+                    txtMarca.Text = artSeleccionado.Marca.ToString();
+                    txtCategoria.Text = artSeleccionado.Dispositivo.ToString();
                     txtImagenDetll.Text = artSeleccionado.ImagenUrl;
                     txtImagenDetll_TextChanged(sender, e);
+
 
                     txtCodigoDetll.Enabled = false;
                     txtNombreDetll.Enabled = false;
                     txtDescripcionDetll.Enabled = false;
                     txtPrecioDetll.Enabled = false;
                     txtImagenDetll.Enabled = false;
+                    txtMarca.Enabled = false;
+                    txtCategoria.Enabled = false;
+                }
+                else
+                {
+                    Response.Redirect("Default.aspx", false);
                 }
             }
             catch (Exception ex)

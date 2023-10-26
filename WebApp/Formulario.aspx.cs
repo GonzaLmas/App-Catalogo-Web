@@ -16,7 +16,7 @@ namespace WebApp
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Validaciones.EsAdmin(Session["user"]))
+            if (Validaciones.EsAdmin(Session["user"]) && Validaciones.UsuarioActivo(Session["user"]))
             {
                 txtId.Enabled = false;
 
@@ -69,6 +69,10 @@ namespace WebApp
                 {
                     throw ex;
                 }
+            }
+            else
+            {
+                Response.Redirect("Default.aspx", false);
             }
         }
 
@@ -129,7 +133,6 @@ namespace WebApp
         public void btnEliminar_Click(object sender, EventArgs e)
         {
             validacionEliminar = true;
-
         }
 
         protected void btnEliminarConfirmacion_Click(object sender, EventArgs e)
@@ -146,7 +149,6 @@ namespace WebApp
             {
                 Session.Add("error", ex);
             }
-
         }
 
         protected void btnInactivar_Click(object sender, EventArgs e)

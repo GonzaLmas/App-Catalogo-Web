@@ -11,7 +11,7 @@ namespace negocio
 {
     public class ArticuloNegocio
     {
-        
+
         public List<Articulo> listar(string id = "")
         {
             List<Articulo> lista = new List<Articulo>();
@@ -39,7 +39,7 @@ namespace negocio
 
                     if (!(datos.Lector["ImagenUrl"] is DBNull))
                         aux.ImagenUrl = (string)datos.Lector["ImagenUrl"];
-                    
+
                     aux.Precio = (float)datos.Lector["Precio"];
                     aux.Marca = new Marca();
                     aux.Marca.Id = (int)datos.Lector["IdMarca"];
@@ -47,10 +47,10 @@ namespace negocio
                     aux.Dispositivo = new Categoria();
                     aux.Dispositivo.Id = (int)datos.Lector["IdCategoria"];
                     aux.Dispositivo.Descripcion = (string)datos.Lector["Dispositivo"];
-                    
+
                     lista.Add(aux);
                 }
-              
+
                 return lista;
             }
             catch (Exception ex)
@@ -110,7 +110,7 @@ namespace negocio
             try
             {
                 datos.setearConsulta("insert into ARTICULOS (Codigo, Nombre, Descripcion, IdMarca,IdCategoria, ImagenUrl, Precio) values (@codigo, @nombre, @descripcion, @idMarca, @idCategoria, @imagenUrl, @precio)");
-                datos.setearParametro("@codigo", nuevo.Codigo);                              
+                datos.setearParametro("@codigo", nuevo.Codigo);
                 datos.setearParametro("@nombre", nuevo.Nombre);
                 datos.setearParametro("@descripcion", nuevo.Descripcion);
                 datos.setearParametro("@idMarca", nuevo.Marca.Id);
@@ -151,7 +151,7 @@ namespace negocio
 
             try
             {
-                datos.setearConsulta("UPDATE ARTICULOS SET Codigo = @codigo, Nombre = @nombre, Descripcion = @descripcion, IdMarca = @idMarca, IdCategoria = @idCategoria, ImagenUrl = @imagenUrl, Precio = @precio WHERE id = @id");          
+                datos.setearConsulta("UPDATE ARTICULOS SET Codigo = @codigo, Nombre = @nombre, Descripcion = @descripcion, IdMarca = @idMarca, IdCategoria = @idCategoria, ImagenUrl = @imagenUrl, Precio = @precio WHERE id = @id");
                 datos.setearParametro("@codigo", modificar.Codigo);
                 datos.setearParametro("@nombre", modificar.Nombre);
                 datos.setearParametro("@descripcion", modificar.Descripcion);
@@ -206,26 +206,26 @@ namespace negocio
             {
                 string consulta = "select a.Id, a.Codigo, a.Nombre, a.Descripcion, a.IdMarca, a.IdCategoria, m.Descripcion Marca, c.Descripcion Dispositivo, a.ImagenUrl, CAST(a.precio as float (1)) Precio from ARTICULOS A, MARCAS M, CATEGORIAS C where m.Id = a.IdMarca and c.Id = a.IdCategoria and ";
 
-                if(campo == "Precio")
+                if (campo == "Precio")
                 {
-                    if(criterio == "Mayor a")                   
-                        consulta += "Precio >"  + filtro;   
-                    
-                    else if(criterio == "Menor a")                  
-                        consulta += "Precio < " + filtro;   
-                    
-                    else                   
-                        consulta += "Precio = " + filtro;                   
+                    if (criterio == "Mayor a")
+                        consulta += "Precio >" + filtro;
+
+                    else if (criterio == "Menor a")
+                        consulta += "Precio < " + filtro;
+
+                    else
+                        consulta += "Precio = " + filtro;
                 }
 
-                else if(campo == "Nombre")
+                else if (campo == "Nombre")
                 {
                     if (criterio == "Comienza con")
                         consulta += "Nombre like '" + filtro + "%'";
 
                     else if (criterio == "Termina con")
                         consulta += "Nombre like '%" + filtro + "'";
-                    
+
                     else
                         consulta += "Nombre like '%" + filtro + "%'";
                 }
@@ -271,7 +271,7 @@ namespace negocio
                 return lista;
             }
             catch (Exception ex)
-            {            
+            {
                 throw ex;
             }
         }

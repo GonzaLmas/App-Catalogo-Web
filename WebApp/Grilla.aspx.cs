@@ -38,11 +38,22 @@ namespace WebApp
 
         protected void btnFiltrarenGrilla_Click(object sender, EventArgs e)
         {
-            List<Articulo> lista = (List<Articulo>)Session["listArticulo"];
-            List<Articulo> listaFiltrada = lista.FindAll(x => x.Nombre.ToUpper().Contains(txtFiltro.Text.ToUpper()));
+            if (!(Validaciones.EsAdmin(Session["user"])))
+            {
+                List<Articulo> lista = (List<Articulo>)Session["listArticulo"];
+                List<Articulo> listaFiltrada = lista.FindAll(x => x.Nombre.ToUpper().Contains(txtFiltro.Text.ToUpper()));
 
-            dgvArticulos.DataSource = listaFiltrada;
-            dgvArticulos.DataBind();
+                dgvArticulos.DataSource = listaFiltrada;
+                dgvArticulos.DataBind();
+            }
+            else
+            {
+                List<Articulo> lista = (List<Articulo>)Session["listArticulo"];
+                List<Articulo> listaFiltrada = lista.FindAll(x => x.Nombre.ToUpper().Contains(txtFiltro.Text.ToUpper()));
+
+                dgvAdmin.DataSource = listaFiltrada;
+                dgvAdmin.DataBind();
+            }
         }
 
         protected void dgvAdmin_SelectedIndexChanged(object sender, EventArgs e)

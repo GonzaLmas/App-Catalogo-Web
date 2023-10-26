@@ -58,7 +58,7 @@
                 </asp:UpdatePanel>
             </div>
 
-            <div class="col-6">
+            <div class="col-6"> 
                 <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                     <ContentTemplate>
                         <div class="mb-3">
@@ -71,7 +71,7 @@
                 </asp:UpdatePanel>
                 <div class="mb-3">
                     <asp:Button ID="btnAgregar" runat="server" Text="Agregar" CssClass="btn btn-primary" OnClick="btnAgregar_Click" />
-                    <a href="#" class="btn btn-danger">Cancelar</a>
+                    <a href="Grilla.aspx" class="btn btn-danger">Cancelar</a>
                 </div>
             </div>
         </div>

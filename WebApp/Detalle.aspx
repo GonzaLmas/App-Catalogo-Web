@@ -23,6 +23,14 @@
                     <asp:Label ID="lblPrecioDetll" runat="server" Text="Precio" CssClass="form-label"></asp:Label>
                     <asp:TextBox ID="txtPrecioDetll" runat="server" CssClass="form-control"> </asp:TextBox>
                 </div>
+                <div class="mb-3">
+                    <asp:Label ID="lblMarca" runat="server" Text="Marca" CssClass="form-label"></asp:Label>
+                    <asp:TextBox ID="txtMarca" runat="server" CssClass="form-control"> </asp:TextBox>
+                </div>
+                <div class="mb-3">
+                    <asp:Label ID="lblCategoria" runat="server" Text="Categoría" CssClass="form-label"></asp:Label>
+                    <asp:TextBox ID="txtCategoria" runat="server" CssClass="form-control"> </asp:TextBox>
+                </div>
             </div>
             <div class="col-6">
                 <div class="mb-3">

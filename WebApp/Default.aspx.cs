@@ -18,8 +18,7 @@ namespace WebApp
             ArticuloNegocio negocio = new ArticuloNegocio();
             Session.Add("listArticulo", negocio.listarConSP());
 
-            repDefault.DataSource = Session["listArticulo"];
-            repDefault.DataBind();
+            ListArticulo = negocio.listarConSP();
         }
 
         protected void btnFiltrarEnDefault_Click(object sender, EventArgs e)
@@ -27,8 +26,7 @@ namespace WebApp
             List<Articulo> lista = (List<Articulo>)Session["listArticulo"];
             List<Articulo> listaFiltrada = lista.FindAll(x => x.Nombre.ToUpper().Contains(txtFiltro.Text.ToUpper()));
 
-            repDefault.DataSource = listaFiltrada;
-            repDefault.DataBind();
+            ListArticulo = listaFiltrada;
         }
     }
 }

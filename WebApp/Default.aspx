@@ -34,20 +34,30 @@
     <%--        </ContentTemplate>
     </asp:UpdatePanel>--%>
 
-    <div class="row row-cols-1 row-cols-md-3 g-4">
-        <asp:Repeater runat="server" ID="repDefault">
-            <ItemTemplate>
-                <div class="col">
-                    <div class="card">
-                        <img src="<%#Eval("ImagenUrl")%>" class="card-img-top" alt="El dispositivo no posee imagen">
-                        <div class="card-body">
-                            <h5 class="card-title"><%#Eval("Nombre")%></h5>
-                            <h5 class="card-title"> Precio: $<%#Eval("Precio")%></h5>
-                            <a href="Detalle.aspx?id=<%#Eval("Id")%>" class="btn btn-primary">Detalle</a>
-                        </div>
-                    </div>
+    <div class="row row-cols-1 row-cols-md-3 g-4 ">
+        <%foreach (dominio.Articulo art in ListArticulo)
+            { %>
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <%if (art.ImagenUrl.ToLower().Contains("https"))
+                        { %>
+                    <img src="<%: art.ImagenUrl%>" class="card-img-top" alt="Imagen no disponible">
+                    <%}
+                        else
+                        {  %>
+                    <img src="Images/imagenVacia.png" class="card-img-top" alt="Imagen no disponible">
+                    <%} %>
+                    <h5 class="card-title"><%: art.Nombre %></h5>
+                    <h5 class="card-title">Precio: $<%: art.Precio %></h5>
+                    <h5 class="card-title">Marca: <%: art.Marca %></h5>
+                    <h5 class="card-title">Categoría: <%: art.Dispositivo %></h5>
+                    <a href="Detalle.aspx?id=<%: art.Id %>" class="btn btn-primary">Detalle</a>
                 </div>
-            </ItemTemplate>
-        </asp:Repeater>
+            </div>
+        </div>
+        <%} %>
     </div>
 </asp:Content>
+
+

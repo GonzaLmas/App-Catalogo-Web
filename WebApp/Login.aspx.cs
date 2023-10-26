@@ -13,7 +13,7 @@ namespace WebApp
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+           
         }
 
         protected void btnIngresar_Click(object sender, EventArgs e)
@@ -21,25 +21,30 @@ namespace WebApp
             Usuario user;
             UsuarioNegocio negocio = new UsuarioNegocio();
 
-            try
+            if (!(Validaciones.UsuarioActivo(Session["user"])))
             {
-                user = new Usuario(txtUsuario.Text, txtPasword.Text, false);
+                try
+                {
+                    user = new Usuario(txtUsuario.Text, txtPasword.Text, false);
 
-                if (negocio.Login(user))
-                {
-                    Session.Add("user", user);
-                    Response.Redirect("Default.aspx", false);
+                    if (negocio.Login(user))
+                    {
+                        Session.Add("user", user);
+                        Response.Redirect("Default.aspx", false);
+                    }
+                    else
+                    {
+                        Session.Add("error", "Email o contraseña incorrectos");
+                        Response.Redirect("Login.aspx", false);
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    Session.Add("error", "Email o contraseña incorrectos");
-                    Response.Redirect("Login.aspx", false);
+                    Session.Add("Error.aspx", ex.ToString());
                 }
             }
-            catch (Exception ex)
-            {
-                Session.Add("Error.aspx", ex.ToString());
-            }
+           
         }
+
     }
 }

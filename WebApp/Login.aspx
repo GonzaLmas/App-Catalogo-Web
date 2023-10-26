@@ -3,8 +3,10 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-   
+
     <h1>Ingrese sus datos</h1>
+    <%if (!(negocio.Validaciones.UsuarioActivo(Session["user"])))
+        {  %>
     <div class="container">
         <div class="row">
             <div class="col-4">
@@ -20,4 +22,5 @@
             </div>
         </div>
     </div>
+    <%}%>
 </asp:Content>
