@@ -4,14 +4,14 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <h1>Ingrese sus datos</h1>
+    <h1 style="margin-top: 30px; margin-bottom: 15px">Ingrese sus datos</h1>
     <%if (!(negocio.Validaciones.UsuarioActivo(Session["user"])))
         {  %>
     <div class="container">
-        <div class="row">
+        <div class="row" style="margin-bottom: 45px">
             <div class="col-4">
                 <div class="mb-3">
-                    <asp:Label ID="lblUsuario" runat="server" Text="Usuario" CssClass="form-label"></asp:Label>
+                    <asp:Label ID="lblUsuario" runat="server" Text="Email" CssClass="form-label"></asp:Label>
                     <asp:TextBox ID="txtUsuario" runat="server" CssClass="form-control"></asp:TextBox>
                 </div>
                 <div class="mb-3">

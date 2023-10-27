@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h1>Detalle del producto</h1>
+    <h1 style="text-align: center; margin-top: 30px; margin-bottom: 35px">Detalle del producto</h1>
     <div class="container">
         <div class="row">
             <div class="col-6">
@@ -37,7 +37,7 @@
                     <asp:Label ID="lblImagenDetll" runat="server" Text="Imagen" CssClass="form-label"></asp:Label>
                     <asp:TextBox ID="txtImagenDetll" runat="server" OnTextChanged="txtImagenDetll_TextChanged"
                         AutoPostBack="true" CssClass="form-control"></asp:TextBox>
-                    <img src="<% = ImagenUrl%>" class="rounded" alt="..." width="65%">
+                    <img src="<% = ImagenUrl%>" class="rounded" alt="..." width="45%" style="margin-top:15px">
                 </div>
             </div>
         </div>

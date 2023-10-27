@@ -128,7 +128,7 @@ namespace WebApp
                 negocio.modificarConSP(articulo);
                 Response.Redirect("Grilla.aspx", false);
             }
-        }
+        } 
 
         public void btnEliminar_Click(object sender, EventArgs e)
         {

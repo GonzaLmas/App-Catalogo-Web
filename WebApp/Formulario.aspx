@@ -4,7 +4,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container">
-        <div class="row">
+        <div class="row" style="margin-top: 55px; margin-bottom: 45px">
             <div class="col-6">
                 <div class="mb-3">
                     <asp:Label ID="lblId" runat="server" Text="Id" CssClass="form-label"></asp:Label>
